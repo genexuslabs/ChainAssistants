@@ -1,5 +1,5 @@
-import logo from 'assets/images/SAIA_logo.png'
-import logoDark from 'assets/images/SAIA_logo_dark.png'
+import logo from 'assets/images/FloWiseAI.png'
+import logoDark from 'assets/images/FloWiseAI_dark.png'
 
 import { useSelector } from 'react-redux'
 
