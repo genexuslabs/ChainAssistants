@@ -52,17 +52,17 @@ Download and Install [NodeJS](https://nodejs.org/en/download) >= 18.15.0
 
 1. Build the image locally:
     ```bash
-    docker build --no-cache -t SAIA .
+    docker build --no-cache -t saia .
     ```
 2. Run image:
 
     ```bash
-    docker run -d --name SAIA -p 3000:3000 SAIA
+    docker run -d --name saia -p 3000:3000 saia
     ```
 
 3. Stop image:
     ```bash
-    docker stop SAIA
+    docker stop saia
     ```
 
 ## 👨‍💻 Developers
