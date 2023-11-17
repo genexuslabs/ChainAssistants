@@ -61,20 +61,20 @@ jobs:
                   cache-to: type=gha,mode=max
                   build-args:
 
-            #- name: Checkout IaC repository
-            #  uses: actions/checkout@v3
-            #  with:
-            #    repository: genexuslabs/GBrain-Infra
-            #    ref: beta
-            #    ssh-key: ${{ secrets.DEPLOY_KEY }}
+            - name: Checkout IaC repository
+              uses: actions/checkout@v3
+              with:
+                  repository: genexuslabs/GBrain-Infra
+                  ref: beta
+                  ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-            #- name: Trigger Deployment Saia GPT
-            #  shell: pwsh
-            #  run: |
-            # Setting git username and email to be able to push back to repo
-            #    git config --global user.email "actions@genexus.com"
-            #    git config --global user.name "Github Actions"
+            - name: Trigger Deployment Saia GPT
+              shell: pwsh
+              run: |
+                  # Setting git username and email to be able to push back to repo
+                  git config --global user.email "actions@genexus.com"
+                  git config --global user.name "Github Actions"
 
-            #    Write-Output "Running deploy.ps1"
-            #    Install-Module -Force -Name powershell-yaml
-            #    .\scripts\deploy.ps1 -WorkSpace . -TagName ${{ env.TAG_SUFFIX }}.${{ github.run_number }} -DeploymentEnv beta -Service chain-editor
+                  Write-Output "Running deploy.ps1"
+                  Install-Module -Force -Name powershell-yaml
+                  .\scripts\deploy.ps1 -WorkSpace . -TagName ${{ env.TAG_SUFFIX }}.${{ github.run_number }} -DeploymentEnv beta -Service flowise-chain-editor
