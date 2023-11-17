@@ -56,7 +56,7 @@ const Marketplace = () => {
     const [isChatflowsLoading, setChatflowsLoading] = useState(true)
     const [isToolsLoading, setToolsLoading] = useState(true)
     const [images, setImages] = useState({})
-    const tabItems = ['Chatflows', 'Tools']
+    const tabItems = ['Chatflows', 'Pharmaverse', 'Tools']
     const [value, setValue] = useState(0)
     const [showToolDialog, setShowToolDialog] = useState(false)
     const [toolDialogProps, setToolDialogProps] = useState({})
@@ -178,6 +178,30 @@ const Marketplace = () => {
                             </Grid>
                         )}
                         {item === 'Tools' && (
+                            <Grid container spacing={gridSpacing}>
+                                {!isToolsLoading &&
+                                    getAllToolsMarketplacesApi.data &&
+                                    getAllToolsMarketplacesApi.data.map((data, index) => (
+                                        <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                                            {data.badge && (
+                                                <Badge
+                                                    sx={{
+                                                        '& .MuiBadge-badge': {
+                                                            right: 20
+                                                        }
+                                                    }}
+                                                    badgeContent={data.badge}
+                                                    color={data.badge === 'POPULAR' ? 'primary' : 'error'}
+                                                >
+                                                    <ItemCard data={data} onClick={() => goToTool(data)} />
+                                                </Badge>
+                                            )}
+                                            {!data.badge && <ItemCard data={data} onClick={() => goToTool(data)} />}
+                                        </Grid>
+                                    ))}
+                            </Grid>
+                        )}
+                        {item === 'Pharmaverse' && (
                             <Grid container spacing={gridSpacing}>
                                 {!isToolsLoading &&
                                     getAllToolsMarketplacesApi.data &&

@@ -131,7 +131,7 @@ class SaiaAssistant implements INode {
         const streaming = nodeData.inputs?.streaming as boolean
         const baseOptions = nodeData.inputs?.baseOptions
 
-        const openAIApiKey = ''
+        const openAIApiKey = process.env.SAIA_API_KEY
         const obj: Partial<OpenAIChatInput> & { openAIApiKey?: string } = {
             temperature: parseFloat(temperature),
             modelName,
@@ -154,9 +154,9 @@ class SaiaAssistant implements INode {
                 throw new Error("Invalid JSON in the ChatOpenAI's BaseOptions: " + exception)
             }
         }
-
+        const uri = process.env.SAIA_PROXY_URI || 'https://api.qa.saia.ai/proxy/openai/v1'
         const model = new ChatOpenAI(obj, {
-            basePath: 'https://api.beta.saia.ai/proxy/openai/v1',
+            basePath: uri,
             baseOptions: parsedBaseOptions
         })
         return model

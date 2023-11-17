@@ -1,5 +1,5 @@
-//import logo from '../../assets/images/saia_logo.png'
-//import logoDark from '../../assets/images/saia_logo_dark.png'
+import logo from 'assets/images/SAIA_logo.png'
+import logoDark from 'assets/images/SAIA_logo_dark.png'
 
 import { useSelector } from 'react-redux'
 
@@ -11,9 +11,9 @@ const Logo = () => {
     return (
         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'row' }}>
             <img
-                style={{ objectFit: 'contain', height: 'auto', width: 150 }}
-                /*src={customization.isDarkMode ? logoDark : logo}*/
-                alt='Flowise'
+                style={{ objectFit: 'contain', height: '60px', width: '60px' }}
+                src={customization.isDarkMode ? logoDark : logo}
+                alt='SAIA'
             />
         </div>
     )
