@@ -77,4 +77,4 @@ jobs:
 
                   Write-Output "Running deploy.ps1"
                   Install-Module -Force -Name powershell-yaml
-                  .\scripts\deploy.ps1 -WorkSpace . -TagName ${{ env.TAG_SUFFIX }}.${{ github.run_number }} -DeploymentEnv beta -Service flowise-chain-editor
+                  .\scripts\deploy.ps1 -WorkSpace . -TagName ${{ env.TAG_SUFFIX }}.${{ github.run_number }} -DeploymentEnv beta -Service flowise-chain-editor -YamlConfigName extra-beta
