@@ -22,7 +22,7 @@ class ConversationChain_Chains implements INode {
     inputs: INodeParams[]
 
     constructor() {
-        this.label = 'Conversation Chain'
+        this.label = 'Saia Assistant'
         this.name = 'conversationChain'
         this.version = 1.0
         this.type = 'ConversationChain'
@@ -32,9 +32,9 @@ class ConversationChain_Chains implements INode {
         this.baseClasses = [this.type, ...getBaseClasses(ConversationChain)]
         this.inputs = [
             {
-                label: 'Language Model',
-                name: 'model',
-                type: 'BaseChatModel'
+                label: 'Assistant',
+                name: 'assistant',
+                type: 'string'
             },
             {
                 label: 'Memory',
@@ -49,15 +49,6 @@ class ConversationChain_Chains implements INode {
                     'Include whole document into the context window, if you get maximum context length error, please use model with higher context window like Claude 100k, or gpt4 32k',
                 optional: true,
                 list: true
-            },
-            {
-                label: 'System Message',
-                name: 'systemMessagePrompt',
-                type: 'string',
-                rows: 4,
-                additionalParams: true,
-                optional: true,
-                placeholder: 'You are a helpful assistant that write codes'
             }
         ]
     }

@@ -575,3 +575,45 @@ export const convertSchemaToZod = (schema: string | object): ICommonObject => {
         throw new Error(e)
     }
 }
+
+export const fetchWithAuth = async (url: RequestInfo | URL, saiaToken: any) => {
+    const request = {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${saiaToken}`
+        },
+        method: 'GET'
+    }
+
+    const response = await fetch(url, request)
+    if (!response.ok) {
+        throw new Error(`Error fetching data from ${url}`)
+    }
+    return response.json()
+}
+
+const getSaiaToken = () => {
+    let saiaToken = process.env.SAIA_API_KEY ?? ''
+    return saiaToken
+}
+
+export const fetchAssistants = async () => {
+    const assistantsUrl = `${process.env.SAIA_API_ASSISTANT}/organization/assistants`
+    let assistants = await fetchWithAuth(assistantsUrl, getSaiaToken())
+
+    return processAssistants(assistants)
+}
+
+const processAssistants = async (assistants: { assistants: any[] }) => {
+    assistants.assistants = assistants.assistants || []
+    assistants.assistants
+        .filter((a) => a.assistantType === 'OpenAIPluginAssistant')
+        .map((a) => (a.assistantId = `assistant/openai-plugin/${a.assistantId}`))
+
+    assistants.assistants.push(...(await defaultPluginAssistants()))
+    return assistants
+}
+
+const defaultPluginAssistants = () => {
+    return []
+}
