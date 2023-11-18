@@ -11,7 +11,12 @@ const Logo = () => {
     return (
         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'row' }}>
             <img
-                style={{ objectFit: 'contain', height: '60px', width: '60px' }}
+                src='https://console.qa.saia.ai/static/Resources/LogoIcon.svg'
+                style={{
+                    objectFit: 'contain',
+                    height: '60px',
+                    width: '60px'
+                }}
                 //              src={customization.isDarkMode ? logoDark : logo}
                 alt='SAIA'
             />
