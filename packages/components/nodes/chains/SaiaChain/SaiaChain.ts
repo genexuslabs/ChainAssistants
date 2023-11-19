@@ -172,12 +172,15 @@ class SaiaChain_Chains implements INode {
                 console.log(answerRes)
             }
             const answerData = await answerRes.json()
-            console.log(answerData)
-            const answer = answerData['text']
 
-            return answer
+            if (answerData.success == true) {
+                const answer = answerData['text']
+                return answer
+            } else {
+                console.log(answerData)
+                return answerData.error.message
+            }
         } catch (error) {
-            console.log(request)
             console.error(error)
         }
         return ''
